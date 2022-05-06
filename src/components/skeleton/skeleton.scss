@@ -1,0 +1,82 @@
+.post-s {
+  width: 75%;
+  margin: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: skeleton 1s ease infinite alternate;
+  @keyframes skeleton {
+    to {
+      opacity: 0.5;
+    }
+  }
+  .content {
+    height: 200px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: 0.8s;
+    background-color: #313131;
+  }
+}
+
+.c-img {
+  background-color: #313131;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+}
+
+.c-de {
+  
+  .s{
+      width: 80%;
+      height: 20px;
+      margin-top: -15px;
+  }
+}
+.d {
+    width: 90%;
+    height: 26px;
+    background-color: #313131;
+}
+.icon {
+  font-size: 1.4rem !important;
+  color: chocolate;
+  cursor: pointer;
+}
+
+.is-love {
+  color: chocolate;
+}
+
+.name {
+  font-size: 2rem;
+  color: rgb(185, 180, 174);
+}
+
+.since {
+  margin-top: -3px;
+  font-size: 14px;
+  color: rgb(185, 180, 174);
+}
+
+.btn-follow {
+  margin-bottom: 1.5rem;
+
+  &:hover {
+    background-color: rgb(86, 82, 82) !important;
+  }
+}
+
+.btn-edit-s {
+    height: 30px;
+    background-color: #313131;
+
+
+  
+}
+
+.job {
+  color: rgb(108, 117, 125);
+  font-size: 1.2rem;
+}

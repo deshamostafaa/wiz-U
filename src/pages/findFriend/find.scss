@@ -1,0 +1,29 @@
+.find {
+  display: flex;
+
+  .find-container {
+    display: flex;
+    flex: 2;
+    margin-right: 20px;
+    margin-top: 70px;
+  }
+
+  .w {
+    margin-left: 10rem !important;
+    width: calc(85% - 18%);
+  }
+
+  .one-friend {
+    margin: 1.8rem 0;
+    display: flex;
+    align-items: center;
+
+    span {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: 20px;
+      margin-left: 10px;
+    }
+  }
+}

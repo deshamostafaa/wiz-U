@@ -1,0 +1,60 @@
+.name {
+  font-size: 2rem;
+  color: rgb(185, 180, 174) !important;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.since {
+  margin-top: -3px;
+  font-size: 14px;
+  color: rgb(185, 180, 174) !important;
+}
+
+.follow{
+  border-radius: 25px !important;
+  font-weight: 600 !important;
+}
+
+.follow-button {
+  color: #333 !important;
+  font-size: 10pt;
+  background-color: #eee !important;
+  border: 1px solid;
+  border-color: #eee !important;
+}
+.btn-isfollow {
+  background-color: transparent !important;
+  border-color: gray !important;
+  color: #eee !important;
+  transition: 0.3s;
+
+  &:hover {
+    border-color: #e31f2b !important;
+    color: #e31f2b !important;
+  }
+}
+
+.f-hover {
+  transition: 0.3s;
+  cursor: pointer;
+}
+.f-hover:hover {
+  color: rgb(49, 49, 229) !important;
+}
+
+.btn-edit {
+  width: 200px !important;
+  margin-bottom: 1rem;
+  background-color: #191A35 !important;
+}
+
+.job {
+  color: rgb(185, 180, 174) !important;
+  font-size: 1.2rem;
+}
+
+.bio{
+  color: rgb(185, 180, 174) !important;
+}

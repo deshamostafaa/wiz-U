@@ -1,0 +1,19 @@
+.friends {
+  margin-right: 20px;
+  padding-left: 2rem;
+  text-align: start !important;
+ 
+  .one-friend {
+    margin: 1.8rem 0;
+    display: flex;
+    align-items: center;
+
+    span {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: 20px;
+      margin-left: 10px;
+    }
+  }
+}
