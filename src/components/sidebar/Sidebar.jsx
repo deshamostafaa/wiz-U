@@ -1,7 +1,4 @@
 import "./sidebar.scss";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import HomeIcon from '@mui/icons-material/Home';
 import PeopleIcon from "@mui/icons-material/People";
@@ -22,10 +19,6 @@ const Sidebar = ({ logOut }) => {
             <span>Home</span>
           </li>
           <p className="title">USEFUL</p>
-          {/* <li>
-            <NotificationsNoneIcon className="icon" />
-            <span>Notifications</span>
-          </li> */}
           <Link to="/find-friend" style={{ textDecoration: "none" }}>
             <li>
               <PeopleIcon className="icon" />

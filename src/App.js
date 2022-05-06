@@ -30,14 +30,14 @@ const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [userData, setUserData] = useState(null);
-  
-  // عشان بيعمل رن للكود من الاول userData = null عشان لما اعمل ريفرش للصفحة هيخلي 
+
+  // عشان بيعمل رن للكود من الاول userData = null عشان لما اعمل ريفرش للصفحة هيخلي
   useEffect(() => {
     getUserData();
-  }, []);
+  }, [getUserData]);
 
   // Get The Current User
-  async function getUserData() {
+  const getUserData = useCallback(async () => {
     if (localStorage.getItem("userToken")) {
       const decodeToken = jwtDecode(localStorage.getItem("userToken"));
       await axiosInstance
@@ -46,15 +46,13 @@ const App = () => {
         .catch((err) => console.log(err));
       setUserData(decodeToken);
     }
-  }
+  }, []);
 
-  
-
-  const logOut = useCallback(() => {
+  const logOut = () => {
     localStorage.removeItem("userToken");
     setUserData(null);
     navigate("/", { replace: true });
-  }, []) ;
+  };
 
   const ProtectecRoute = ({ children }) => {
     if (!localStorage.getItem("userToken")) {
@@ -67,7 +65,7 @@ const App = () => {
   return (
     <>
       <AnimatePresence exitBeforeEnter>
-      <>
+        <>
           <Navbar
             currentUser={currentUser}
             logOut={logOut}
