@@ -31,11 +31,6 @@ const App = () => {
   const location = useLocation();
   const [userData, setUserData] = useState(null);
 
-  // عشان بيعمل رن للكود من الاول userData = null عشان لما اعمل ريفرش للصفحة هيخلي
-  useEffect(() => {
-    getUserData();
-  }, [getUserData]);
-
   // Get The Current User
   const getUserData = useCallback(async () => {
     if (localStorage.getItem("userToken")) {
@@ -46,7 +41,11 @@ const App = () => {
         .catch((err) => console.log(err));
       setUserData(decodeToken);
     }
-  }, []);
+  }, [dispatch]);
+  // عشان بيعمل رن للكود من الاول userData = null عشان لما اعمل ريفرش للصفحة هيخلي
+  useEffect(() => {
+    getUserData();
+  }, [getUserData]);
 
   const logOut = () => {
     localStorage.removeItem("userToken");

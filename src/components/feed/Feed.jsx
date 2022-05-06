@@ -14,7 +14,7 @@ const Feed = ({ username }) => {
 
   useEffect(() => {
     getPostUsers();
-  }, [username, currentUser._id, getPostUsers]);
+  }, [username, currentUser._id]);
 
   async function getPostUsers() {
     const res = username

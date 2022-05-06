@@ -22,7 +22,7 @@ const Post = ({ post, currentUser }) => {
   useEffect(() => {
     AOS.init();
     getUser();
-  }, [post.userId, getUser]);
+  }, [post.userId]);
 
   //Get The Post User
   async function getUser() {
