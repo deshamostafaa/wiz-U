@@ -11,7 +11,7 @@ const Navbar = ({ userData, logOut, currentUser }) => {
   return (
     <nav className="navbar container-fluid position-fixed navbar-expand-lg">
       <div className="top">
-        <Link to="/home" style={{ textDecoration: "none" }}>
+        <Link to="/" style={{ textDecoration: "none" }}>
           <h1 className="logo">Wiz U</h1>
         </Link>
       </div>

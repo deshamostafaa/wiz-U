@@ -26,7 +26,7 @@ const Login = ({getUserData}) => {
         localStorage.setItem("userToken", data.token);
         setIsLoading(false);
         getUserData();
-        navigate("/home", { replace: true });
+        navigate("/", { replace: true });
       })
       .catch((error) => {
         setErr(error.response.data);

@@ -72,24 +72,28 @@ const App = () => {
           />
           <Routes location={location} key={location.pathname}>
             <Route path="/">
-              <Route index element={<Login getUserData={getUserData} />} />
+              {!userData ? (
+                <Route index element={<Login getUserData={getUserData} />} />
+              ) : (
+                <Route
+                  path="/"
+                  element={
+                    <ProtectecRoute>
+                      <Home
+                        currentUser={currentUser}
+                        logOut={logOut}
+                        userData={userData}
+                      />
+                    </ProtectecRoute>
+                  }
+                />
+              )}
+
               <Route
                 path="/profile/:username"
                 element={
                   <ProtectecRoute>
                     <Profile currentUser={currentUser} />
-                  </ProtectecRoute>
-                }
-              />
-              <Route
-                path="home"
-                element={
-                  <ProtectecRoute>
-                    <Home
-                      currentUser={currentUser}
-                      logOut={logOut}
-                      userData={userData}
-                    />
                   </ProtectecRoute>
                 }
               />

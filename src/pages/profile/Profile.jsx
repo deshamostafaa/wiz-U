@@ -16,25 +16,8 @@ import { SkeletonUser } from "../../components/skeleton/Skeleton";
 
 const Profile = ({ currentUser }) => {
   const [user, setUser] = useState({});
-  const [friends, setFriends] = useState([]);
   const { username } = useParams();
   const [loading, setIsLoading] = useState(true);
-
-
-  // Get Friends
-  useEffect(() => {
-    const getFriend = async () => {
-      try {
-        const { data } = await axiosInstance.get(
-          `/users/friends/${currentUser._id}`
-        );
-        setFriends(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getFriend();
-  }, [currentUser._id]);
 
 
   // Get the User Posts only Current User

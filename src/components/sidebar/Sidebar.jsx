@@ -14,7 +14,7 @@ const Sidebar = ({ logOut }) => {
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
-          <li onClick={() => navigate("/home")}>
+          <li onClick={() => navigate("/")}>
             <HomeIcon className="icon" />
             <span>Home</span>
           </li>

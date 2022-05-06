@@ -97,11 +97,11 @@ const UserDetails = ({ user, currentUser }) => {
           <div className="container-follow mt-3">
             <span>
               <PeopleIcon className="text-secondary me-2" />
-              {user.followers.length}
+              {user.followers?.length}
               <span className="text-secondary f-hover"> followers</span>
             </span>
             <span className="ms-4">
-              {user.followings.length}
+              {user.followings?.length}
               <span className="text-secondary f-hover"> following</span>
             </span>
           </div>
