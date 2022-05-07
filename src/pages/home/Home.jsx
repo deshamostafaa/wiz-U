@@ -5,13 +5,14 @@ import { axiosInstance } from "../../config";
 import "./home.scss";
 import Feed from "../../components/feed/Feed";
 import Friends from "../../components/friend/Friends";
-import AddPost from './../../components/AddPost/AddPost';
+import AddPost from "./../../components/AddPost/AddPost";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { SkeletonFriend } from "../../components/skeleton/Skeleton";
+
 import { Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 const Home = ({ currentUser, logOut }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [friends, setFriends] = useState([]);
   const [loading, setIsLoading] = useState(true);
 
@@ -23,15 +24,14 @@ const Home = ({ currentUser, logOut }) => {
           `/users/friends/${currentUser._id}`
         );
         setFriends(data);
-    setIsLoading(false);
-
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
     };
     getFriend();
   }, [currentUser]);
-  
+
   return (
     <>
       <motion.div
@@ -40,8 +40,9 @@ const Home = ({ currentUser, logOut }) => {
         exit={{ scale: 0 }}
         transition={{ duration: 0 }}
       >
+       
         <div className="home">
-          <Sidebar currentUser={currentUser} logOut={logOut} />
+          <Sidebar className='side-home' logOut={logOut} />
           <main className="homeContainer d-flex justify-content-end">
             <div className="row mt-5 w ">
               <div className="post-container">

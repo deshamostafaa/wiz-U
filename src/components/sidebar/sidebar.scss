@@ -1,11 +1,11 @@
 .sidebar {
-  width: 274px;
   border-right: 3px solid #252753;
   height: calc(100vh - 69px);
   background-color: #191a35 !important;
   position: fixed;
   margin-top: 69px;
-
+  transition: .5s;
+  z-index: 100;
   .top {
     height: 80px;
     display: flex;
@@ -19,8 +19,8 @@
       font-weight: 600 !important;
     }
   }
-
   
+    
 
   .center {
     padding-left: 10px;
@@ -49,8 +49,7 @@
         }
 
         .icon {
-          font-size: 20px;
-          color: #7451f8;
+          font-size: 40px !important;
         }
 
         span {
@@ -65,11 +64,11 @@
   }
 }
 
-@media (max-width: 1160px) {
-  .sidebar{
-    width: 180px;
-  }
-  li > span {
-    font-size: 15px !important;
-  }
+.sidebar-show{
+  width: 274px;
 }
+
+.sidebar-hide{
+  width: 100px;
+}
+
