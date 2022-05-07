@@ -65,7 +65,7 @@ const UserDetails = ({ user, currentUser }) => {
           </Avatar>
         </div>
         <div className="w text-start mt-4 ms-5">
-          <span className="d-block name">{user.name + " " + user.surname}</span>
+          <span className="d-block name">{user.name + " " + user.surname?.slice(0,1) + "."}</span>
           <p className="since">
             Member Since {dayjs(user.createdAt).fromNow()} &#128156;
           </p>

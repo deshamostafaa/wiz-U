@@ -21,18 +21,17 @@ const Profile = ({ currentUser }) => {
 
 
   // Get the User Posts only Current User
+  async function getPostCurrentUser() {
+    await axiosInstance
+      .get(`/users?username=${username}`)
+      .then(({ data }) => {
+        setUser(data);
+      })
+      .catch((err) => console.log(err.respones.data));
+  }
   useEffect(() => {
-    async function getPostCurrentUser() {
-      await axiosInstance
-        .get(`/users?username=${username}`)
-        .then(({ data }) => {
-
-          setUser(data);
-        })
-        .catch((err) => console.log(err.respones.data));
-    }
     getPostCurrentUser();
-  }, [username]);
+  }, [username, getPostCurrentUser]);
 
   setTimeout(() => {
     setIsLoading(false);

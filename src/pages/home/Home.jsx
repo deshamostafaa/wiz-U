@@ -31,10 +31,6 @@ const Home = ({ currentUser, logOut }) => {
     };
     getFriend();
   }, [currentUser]);
-
-  // setTimeout(() => {
-  //   setIsLoading(false);
-  // }, 1200);
   
   return (
     <>
@@ -48,10 +44,10 @@ const Home = ({ currentUser, logOut }) => {
           <Sidebar currentUser={currentUser} logOut={logOut} />
           <main className="homeContainer d-flex justify-content-end">
             <div className="row mt-5 w ">
-              <div className="col-8 post-container">
+              <div className="post-container">
                 <Feed />
               </div>
-              <div className="col-2 friend-container">
+              <div className="friend-container">
                 <h1 className="fs-1 lead">Following &#128156;</h1>
                 {loading ? (
                   <SkeletonFriend />

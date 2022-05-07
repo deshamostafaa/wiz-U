@@ -78,7 +78,6 @@ const StyledMenu = styled((props) => (
       await axiosInstance.delete(
         `/posts/${post._id}`
       );
-      window.location.reload();
     } catch (error) {
       console.log(error.response.data);
     }
@@ -94,7 +93,11 @@ const StyledMenu = styled((props) => (
 
   const handleClickOpen = () => {
     setOpenE(true);
-  };
+   };
+   
+    const handleCloseE = () => {
+      setOpenE(false);
+    };
 
 
   // To Edit Post
@@ -108,7 +111,6 @@ const StyledMenu = styled((props) => (
           `/posts/${post._id}`,
           editPost
         );
-        window.location.reload();
       }
     } catch (error) {
       console.log(error);
@@ -187,7 +189,7 @@ const StyledMenu = styled((props) => (
                 }}
               >
                 <Tooltip title="Continue Edit">
-                  <Button>Continue</Button>
+                  <Button onClick={handleCloseE}>Continue</Button>
                 </Tooltip>
               </DialogActions>
             </Box>

@@ -15,7 +15,7 @@ const Friends = ({ friend }) => {
           <Avatar src={friend.profilePicture} sx={{ width: 52, height: 52 }}>
             {friend.name.slice(0, 1) + friend.surname.slice(0, 1)}
           </Avatar>
-          <span>{friend.name + " " + friend.surname}</span>
+          <span>{friend.name + " " + friend.surname?.slice(0, 1) + "."}</span>
         </div>
       </Link>
     </div>

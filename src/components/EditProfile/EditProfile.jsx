@@ -15,11 +15,11 @@ import Zoom from "@mui/material/Zoom";
 export default function EditProfile({ currentUser }) {
   
     const [user, setUser] = useState({
-        name: currentUser.name,
-        surname: currentUser.surname,
-        job: currentUser.job,
-        bio: currentUser.bio,
-        address: currentUser.address
+        name: '',
+        surname: '',
+        job: '',
+        bio: '',
+        address: ''
   });
 
   const handleSubmit = async (eo) => {
@@ -27,8 +27,7 @@ export default function EditProfile({ currentUser }) {
       const updateUser = {...user, userId: currentUser._id}
     try {
       
-        await axiosInstance.put(`/users/${currentUser._id}`, updateUser);
-        window.location.reload();
+        await axiosInstance.patch(`/users/${currentUser._id}`, updateUser);
     } catch (error) {
       console.log(error.response.data);
     }
@@ -139,9 +138,9 @@ export default function EditProfile({ currentUser }) {
                 marginTop: "15px",
               }}
             >
-              <Tooltip title="Edit Profile">
-                <Button>Continue</Button>
-              </Tooltip>
+              
+                <Button onClick={handleClose}>Continue</Button>
+             
             </DialogActions>
           </Box>
         </DialogContent>

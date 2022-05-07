@@ -22,16 +22,18 @@ function AddPost({ currentUser }) {
   const handleSubmit = async (eo) => {
     eo.preventDefault();
     const createPost = { ...post, userId: currentUser._id };
-    try {
-      if (post.desc !== "") {
-        await axiosInstance.post(`/posts`, createPost);
-        window.location.reload();
-        setPost({ desc: "" });
-      }
-    } catch (error) {
-      console.log(error);
+
+    if (post.desc !== "") {
+      await axiosInstance
+        .post(`/posts`, createPost)
+        .then((res) => {
+          //  window.location.reload();
+          setPost({ desc: "" });
+        })
+        .catch((err) => console.log(err.response.data));
     }
   };
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -103,9 +105,9 @@ function AddPost({ currentUser }) {
                 marginTop: "15px",
               }}
             >
-              <Tooltip title="Create Post">
-                <Button>Create</Button>
-              </Tooltip>
+              <Button disabled={!post.desc} onClick={handleClose}>
+                Create
+              </Button>
             </DialogActions>
           </Box>
         </DialogContent>
