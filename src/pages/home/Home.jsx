@@ -42,7 +42,7 @@ const Home = ({ currentUser, logOut }) => {
       >
        
         <div className="home">
-          <Sidebar className='side-home' logOut={logOut} />
+          <Sidebar logOut={logOut} />
           <main className="homeContainer d-flex justify-content-end">
             <div className="row mt-5 w ">
               <div className="post-container">

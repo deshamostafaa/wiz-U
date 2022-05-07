@@ -103,7 +103,6 @@ const StyledMenu = styled((props) => (
   // To Edit Post
   const handleSubmit = async (eo) => {
     eo.preventDefault();
-    console.log("dana");
     const editPost = { ...postEdit, userId: currentUser._id };
     try {
       if (post.desc !== "") {

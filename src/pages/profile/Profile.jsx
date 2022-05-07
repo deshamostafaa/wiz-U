@@ -30,7 +30,7 @@ const Profile = ({ currentUser }) => {
   }, [username]);
   useEffect(() => {
     getPostCurrentUser();
-  }, [username, getPostCurrentUser]);
+  }, [getPostCurrentUser]);
 
 
   dayjs.extend(relativeTime);

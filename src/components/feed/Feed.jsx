@@ -30,8 +30,7 @@ const Feed = ({ username }) => {
   }, [username, currentUser._id]) 
   useEffect(() => {
     getPostUsers();
-  }, [username, currentUser._id, getPostUsers]);
-
+  }, [getPostUsers]);
   
   return (
     <>
