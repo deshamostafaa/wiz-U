@@ -13,12 +13,11 @@ import { axiosInstance } from "../../config";
 const Post = ({ post, currentUser }) => {
   const [user, setUser] = useState({});
   const [like, setLike] = useState(post.likes.length);
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(post.likes?.includes(currentUser._id));
 
   useEffect(() => {
     setIsLiked(post.likes.includes(currentUser._id));
-    likes()
-  }, [like ]);
+  }, [currentUser._id, post.likes]);
 
   //Get The Post User
   async function getUser() {
