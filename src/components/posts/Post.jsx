@@ -29,7 +29,7 @@ const Post = ({ post, currentUser }) => {
     getUser();
   }, [getUser]);
 
-  const likeHandler = () => {
+  const likeHandler = useCallback(() => {
     try {
       axiosInstance.put("/posts/" + post._id + "/like", {
         userId: currentUser._id,
@@ -37,7 +37,7 @@ const Post = ({ post, currentUser }) => {
     } catch (err) {}
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
-  };
+  }, [post._id, like, currentUser._id, isLiked]);
 
   const likes = () => {
     if (like) {
