@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -13,22 +13,20 @@ import AddPost from "./../../components/AddPost/AddPost";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { SkeletonUser } from "../../components/skeleton/Skeleton";
 
-
 const Profile = ({ currentUser }) => {
   const [user, setUser] = useState({});
   const { username } = useParams();
   const [loading, setIsLoading] = useState(true);
 
-
   // Get the User Posts only Current User
-  async function getPostCurrentUser() {
+  const getPostCurrentUser = useCallback(async () => {
     await axiosInstance
       .get(`/users?username=${username}`)
       .then(({ data }) => {
         setUser(data);
       })
       .catch((err) => console.log(err.respones.data));
-  }
+  }, [username]);
   useEffect(() => {
     getPostCurrentUser();
   }, [username, getPostCurrentUser]);

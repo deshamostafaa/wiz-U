@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -20,15 +20,14 @@ const Post = ({ post, currentUser }) => {
   }, [currentUser._id, post.likes]);
 
   //Get The Post User
-  async function getUser() {
+  const getUser = useCallback(async () => {
     const { data } = await axiosInstance.get(`/users?userId=${post.userId}`);
     setUser(data);
-  }
+  }, [post.userId]);
   useEffect(() => {
     AOS.init();
     getUser();
-  }, [post.userId]);
-
+  }, [getUser]);
 
   const likeHandler = () => {
     try {
@@ -98,12 +97,10 @@ const Post = ({ post, currentUser }) => {
             >
               <i
                 className={
-                  isLiked
-                    ? " fa fa-heart icon"
-                    : " fa fa-heart-o icon"
+                  isLiked ? " fa fa-heart icon" : " fa fa-heart-o icon"
                 }
               ></i>{" "}
-              <span className="ms-1 mb-1 love">{likes() || ''}</span>
+              <span className="ms-1 mb-1 love">{likes() || ""}</span>
             </div>
             <div className="col">
               <i className="fa fa-comment-o icon"></i>
