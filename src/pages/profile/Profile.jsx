@@ -24,6 +24,7 @@ const Profile = ({ currentUser }) => {
       .get(`/users?username=${username}`)
       .then(({ data }) => {
         setUser(data);
+        setIsLoading(false);
       })
       .catch((err) => console.log(err.respones.data));
   }, [username]);
@@ -31,9 +32,6 @@ const Profile = ({ currentUser }) => {
     getPostCurrentUser();
   }, [username, getPostCurrentUser]);
 
-  setTimeout(() => {
-    setIsLoading(false);
-  }, 1200);
 
   dayjs.extend(relativeTime);
   return (
