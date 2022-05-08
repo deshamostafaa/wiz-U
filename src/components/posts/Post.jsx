@@ -13,11 +13,7 @@ import { axiosInstance } from "../../config";
 const Post = ({ post, currentUser }) => {
   const [user, setUser] = useState({});
   const [like, setLike] = useState(post.likes.length);
-  const [isLiked, setIsLiked] = useState(false);
-
-  useEffect(() => {
-    setIsLiked(post.likes.includes(currentUser._id));
-  }, [post.likes]);
+  const [isLiked, setIsLiked] = useState(post.likes?.includes(currentUser._id));
 
   //Get The Post User
   const getUser = useCallback(async () => {
@@ -27,6 +23,7 @@ const Post = ({ post, currentUser }) => {
   useEffect(() => {
     AOS.init();
     getUser();
+    setIsLiked(post.likes?.includes(currentUser._id))
   }, [getUser]);
 
   const likeHandler = () => {
@@ -36,10 +33,24 @@ const Post = ({ post, currentUser }) => {
       });
     } catch (err) {}
     setLike(isLiked ? like - 1 : like + 1);
+    const likes = () => {
+      if (like) {
+        if (isLiked && like - 1 === 0) {
+          return "You";
+        } else if (isLiked && like - 1 === 1) {
+          return "You and 1 more";
+        } else if (isLiked && like - 1 !== 1) {
+          return `You and ${like - 1} others`;
+        } else {
+          return like;
+        }
+      }
+      return false;
+    };
     setIsLiked(!isLiked);
   };
 
-  const likes = () => {
+  const likes =  () => {
     if (like) {
       if (isLiked && like - 1 === 0) {
         return "You";
@@ -52,7 +63,8 @@ const Post = ({ post, currentUser }) => {
       }
     }
     return false;
-  };
+  }
+
 
   dayjs.extend(relativeTime);
 
