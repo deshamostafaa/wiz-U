@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Post from "../../components/posts/Post";
 import { SkeletonPost } from "../skeleton/Skeleton";
@@ -12,7 +12,7 @@ const Feed = ({ username }) => {
   const [post, setPost] = useState([]);
   const { currentUser } = useSelector((state) => state.currentUserSlice);
 
-  const getPostUsers = useCallback(async() => {
+  const getPostUsers = async() => {
     const res = username
       ? await axiosInstance.get(
           `/posts/profile/${username}`
@@ -27,10 +27,10 @@ const Feed = ({ username }) => {
         return new Date(p2.createdAt) - new Date(p1.createdAt);
       })
     );
-  }, [username, currentUser._id]) 
+  }
   useEffect(() => {
     getPostUsers();
-  }, [getPostUsers]);
+  }, [username, currentUser._id,getPostUsers]);
   
   return (
     <>

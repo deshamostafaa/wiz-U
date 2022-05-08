@@ -17,7 +17,7 @@ const Post = ({ post, currentUser }) => {
 
   useEffect(() => {
     setIsLiked(post.likes.includes(currentUser._id));
-  }, [currentUser._id, post.likes]);
+  }, [post.likes]);
 
   //Get The Post User
   const getUser = useCallback(async () => {
