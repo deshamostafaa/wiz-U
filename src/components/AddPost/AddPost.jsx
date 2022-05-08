@@ -4,12 +4,12 @@ import { axiosInstance } from "../../config";
 // MUL
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import { Box } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import AddIcon from "@mui/icons-material/Add";
-import { Box } from "@mui/material";
 import { Tooltip } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
 
@@ -63,15 +63,15 @@ function AddPost({ currentUser }) {
         </Button>
       </Tooltip>
       <Dialog
-        sx={{ backgroundColor: "#0A1929", color: "#eee" }}
+        sx={{ backgroundColor: "#0A1929" }}
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle sx={{ backgroundColor: "#0A1929", color: "#eee" }}>
+        <DialogTitle sx={{ backgroundColor: "#0A1929" }}>
           Create Post
         </DialogTitle>
         <DialogContent
-          sx={{ height: "300px", backgroundColor: "#0A1929", color: "#eee" }}
+          sx={{ height: "300px", backgroundColor: "#0A1929" }}
         >
           <Box
             component="form"

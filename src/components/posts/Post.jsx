@@ -2,13 +2,14 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import "./post.scss";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import Avatar from "@mui/material/Avatar";
 import { deepOrange } from "@mui/material/colors";
 import CustomizedMenus from "../EditPost/EditPost";
+import "./post.scss";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { axiosInstance } from "../../config";
+import Comment from "../comment/Comment";
 
 const Post = ({ post, currentUser }) => {
   const [user, setUser] = useState({});
@@ -33,20 +34,7 @@ const Post = ({ post, currentUser }) => {
       });
     } catch (err) {}
     setLike(isLiked ? like - 1 : like + 1);
-    const likes = () => {
-      if (like) {
-        if (isLiked && like - 1 === 0) {
-          return "You";
-        } else if (isLiked && like - 1 === 1) {
-          return "You and 1 more";
-        } else if (isLiked && like - 1 !== 1) {
-          return `You and ${like - 1} others`;
-        } else {
-          return like;
-        }
-      }
-      return false;
-    };
+    
     setIsLiked(!isLiked);
   };
 
@@ -100,7 +88,7 @@ const Post = ({ post, currentUser }) => {
             <h5>{user.name + " " + user.surname}</h5>
           </Link>
           <p className="time">{dayjs(post.createdAt).fromNow()}</p>
-          <p className="ps-2 mt-2 mb-4 lead">{post.desc}</p>
+          <p className="ps-2 mt-2 mb-4 lead" style={{width: "90%"}}>{post.desc}</p>
           <div className="row w-50 d-flex">
             <div
               onClick={likeHandler}
@@ -112,10 +100,10 @@ const Post = ({ post, currentUser }) => {
                   isLiked ? " fa fa-heart icon" : " fa fa-heart-o icon"
                 }
               ></i>{" "}
-              <span className="ms-1 mb-1 love">{likes() || ""}</span>
+              <p className="ms-4 mb-1 love">{likes() || ""}</p>
             </div>
             <div className="col">
-              <i className="fa fa-comment-o icon"></i>
+              <Comment post={ post } currentUser={currentUser} user={user} />
             </div>
           </div>
           <div className="position-fixed menu">
