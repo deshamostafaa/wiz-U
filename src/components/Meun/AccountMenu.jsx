@@ -37,7 +37,7 @@ export default function AccountMenu({ currentUser, logOut }) {
               src={currentUser.profilePicture}
               sx={{ width: 42, height: 42 }}
             >
-              {currentUser.name.slice(0, 1) + currentUser.surname.slice(0, 1)}
+              {currentUser.name?.slice(0, 1) + currentUser.surname?.slice(0, 1)}
             </Avatar>
           </IconButton>
         </Tooltip>
