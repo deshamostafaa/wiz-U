@@ -15,6 +15,7 @@ import { deepOrange } from "@mui/material/colors";
 import { Link } from "react-router-dom";
 import "./comment.scss";
 import { axiosInstance } from "../../config";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function Comments({ post, currentUser, user }) {
   const [open, setOpen] = React.useState(false);
@@ -26,16 +27,13 @@ function Comments({ post, currentUser, user }) {
   const [comments, setComments] = useState([]);
 
   const fetchComment = useCallback(async () => {
-    const { data } = await axiosInstance.get(
-      `/comment/${post._id}`
-    );
+    const { data } = await axiosInstance.get(`/comment/${post._id}`);
     setComments(data);
-  }, [post._id]);
+  }, [comments]);
 
   useEffect(() => {
     fetchComment();
   }, [fetchComment]);
-  // console.log(comments)
 
   // Create Comment
   const handleCreate = async () => {
@@ -58,6 +56,15 @@ function Comments({ post, currentUser, user }) {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleDelete = async (id) => {
+    try {
+      await axiosInstance.delete(`comment/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   dayjs.extend(relativeTime);
 
   return (
@@ -136,7 +143,8 @@ function Comments({ post, currentUser, user }) {
             </Button>
           </Box>
           <hr />
-        
+          <p className="fs-5">{comments?.length} Comments </p>
+          <Box component="div">
             {comments?.length !== 0
               ? comments?.map((c) => {
                   return (
@@ -144,14 +152,25 @@ function Comments({ post, currentUser, user }) {
                       key={c._id}
                       className=" p-2 mb-3 content-comment position-relative bg-transparent"
                     >
-                      <div className=" w-100">
+                      <div className=" w-100 d-flex align-items-center justify-content-between">
                         <Link style={{ textDecoration: "none" }} to={`/`}>
                           <h5 className="m-2">
                             {c.userId.name + " " + c.userId.surname}
                           </h5>
                         </Link>
-                        <p className="ps-2 mt-1 mb-2 fs-6 lead">{c.comment}</p>
+                        {post.userId === currentUser._id ||
+                        currentUser._id === c.userId._id ? (
+                          <Button
+                            onClick={() => handleDelete(c._id)}
+                            variant="outlined"
+                          >
+                            <DeleteIcon />
+                          </Button>
+                        ) : (
+                          ""
+                        )}
                       </div>
+                      <p className="ps-2 mt-1 mb-2 fs-6 lead">{c.comment}</p>
 
                       <p className="time ms-1 mt-2 ">
                         {dayjs(c.createdAt).fromNow()}
@@ -160,7 +179,7 @@ function Comments({ post, currentUser, user }) {
                   );
                 })
               : null}
-         
+          </Box>
         </DialogContent>
         <DialogActions sx={{ backgroundColor: "#0A1929" }}>
           <Button onClick={handleClose}>Cancel</Button>

@@ -53,18 +53,6 @@ const Post = ({ post, currentUser }) => {
     return 'No Likes';
   }
 
-  const [comments, setComments] = useState([]);
-
-  const fetchComment = useCallback(async () => {
-    const { data } = await axiosInstance.get(`/comment/${post._id}`);
-    setComments(data);
-  }, [post._id]);
-
-  useEffect(() => {
-    fetchComment();
-  }, [fetchComment]);
-
-
   dayjs.extend(relativeTime);
 
   return (
@@ -99,9 +87,7 @@ const Post = ({ post, currentUser }) => {
             <h5>{user.name + " " + user.surname}</h5>
           </Link>
           <p className="time">{dayjs(post.createdAt).fromNow()}</p>
-          <p className="ps-2 mt-2 mb-4 lead" style={{ width: "90%" }}>
-            {post.desc}
-          </p>
+          <p className="ps-2 mt-2 mb-4 lead" style={{width: "90%"}}>{post.desc}</p>
           <div className="row w-50 d-flex">
             <div
               onClick={likeHandler}
@@ -115,9 +101,8 @@ const Post = ({ post, currentUser }) => {
               ></i>{" "}
               <p className="ms-4 mb-1 love">{likes() || ""}</p>
             </div>
-            <div className="col d-flex align-items-center">
-              <Comments post={post} currentUser={currentUser} user={user} />
-              <span>{comments?.length}</span>
+            <div className="col">
+              <Comments post={ post } currentUser={currentUser} user={user} />
             </div>
           </div>
           <div className="position-fixed menu">
