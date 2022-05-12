@@ -21,6 +21,7 @@ import Home from "./pages/home/Home";
 import Navbar from "./components/navbar/Navbar";
 import Profile from "./pages/profile/Profile";
 import FindFriend from "./pages/findFriend/FindFriend";
+import NotFound from "./pages/not found/NotFound";
 // import Followers from "./pages/followers/Followers";
 
 const App = () => {
@@ -55,7 +56,7 @@ const App = () => {
 
   const ProtectecRoute = ({ children }) => {
     if (!localStorage.getItem("userToken")) {
-      return <Navigate to="/" />;
+      return <Navigate to="/login" />;
     } else {
       return children;
     }
@@ -72,11 +73,9 @@ const App = () => {
           />
           <Routes location={location} key={location.pathname}>
             <Route path="/">
-              {!userData ? (
-                <Route index element={<Login getUserData={getUserData} />} />
-              ) : (
+              
                 <Route
-                  path="/"
+                  index
                   element={
                     <ProtectecRoute>
                       <Home
@@ -87,8 +86,6 @@ const App = () => {
                     </ProtectecRoute>
                   }
                 />
-              )}
-
               <Route
                 path="/profile/:username"
                 element={
@@ -97,12 +94,16 @@ const App = () => {
                   </ProtectecRoute>
                 }
               />
-              <Route path="register" element={<Register />} />
               <Route
                 path="find-friend"
                 element={<FindFriend currentUser={currentUser} />}
               />
-              <Route path="*" element={<h1>This Page Is Not Found</h1>} />
+                <Route path="/login" element={<Login getUserData={getUserData} />} />
+              
+            
+
+              <Route path="register" element={<Register />} />
+              <Route path="*" element={<NotFound/>} />
             </Route>
           </Routes>
         </>

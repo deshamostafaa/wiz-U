@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -13,10 +13,43 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import Avatar from "@mui/material/Avatar";
 import { deepOrange } from "@mui/material/colors";
 import { Link } from "react-router-dom";
-import './comment.scss'
+import "./comment.scss";
+import { axiosInstance } from "../../config";
 
-export default function Comment({ post, currentUser, user }) {
+function Comments({ post, currentUser, user }) {
   const [open, setOpen] = React.useState(false);
+  const [createCom, setCreateCom] = useState({
+    userId: "",
+    postId: "",
+    comment: "",
+  });
+  const [comments, setComments] = useState([]);
+
+  const fetchComment = useCallback(async () => {
+    const { data } = await axiosInstance.get(
+      `/comment/${post._id}`
+    );
+    setComments(data);
+  }, [post._id]);
+
+  useEffect(() => {
+    fetchComment();
+  }, [fetchComment]);
+  // console.log(comments)
+
+  // Create Comment
+  const handleCreate = async () => {
+    const newComment = {
+      ...createCom,
+      userId: currentUser._id,
+      postId: post._id,
+    };
+    try {
+      await axiosInstance.post("/comment", newComment);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -41,7 +74,7 @@ export default function Comment({ post, currentUser, user }) {
           Add Comment
         </DialogTitle>
         <DialogContent sx={{ backgroundColor: "#0A1929" }}>
-          <DialogContentText>
+          <DialogContentText component="div">
             <div className=" p-2 content-comment position-relative">
               <div className=" w-100 d-flex  ">
                 <Link
@@ -91,25 +124,43 @@ export default function Comment({ post, currentUser, user }) {
               label="Add Comment"
               variant="outlined"
               placeholder={`${currentUser.username} you can write a comment`}
-              // value={post.desc}
-              // onChange={(e) => setPost({ desc: e.target.value })}
+              value={createCom.comment}
+              onChange={(e) => setCreateCom({ comment: e.target.value })}
             />
+            <Button
+              onClick={handleCreate}
+              sx={{ marginTop: "15px" }}
+              variant="outlined"
+            >
+              Add Comment
+            </Button>
           </Box>
-          <Button variant="outlined">Add Comment</Button>
           <hr />
-          <div className=" p-2 content-comment position-relative bg-transparent">
-            <div className=" w-100">
-              <Link
-                style={{ textDecoration: "none" }}
-                to={`/profile/${user.username}`}
-              >
-                <h5 className="m-2">{user.name + " " + user.surname}</h5>
-              </Link>
-              <p className="ps-2 mt-1 mb-2 fs-6 lead">{post.desc}</p>
-            </div>
+          <Box component="div">
+            {comments?.length !== 0
+              ? comments?.map((c) => {
+                  return (
+                    <div
+                      key={c._id}
+                      className=" p-2 mb-3 content-comment position-relative bg-transparent"
+                    >
+                      <div className=" w-100">
+                        <Link style={{ textDecoration: "none" }} to={`/`}>
+                          <h5 className="m-2">
+                            {c.userId.name + " " + c.userId.surname}
+                          </h5>
+                        </Link>
+                        <p className="ps-2 mt-1 mb-2 fs-6 lead">{c.comment}</p>
+                      </div>
 
-            <p className="time ms-1 mt-2 ">{dayjs(post.createdAt).fromNow()}</p>
-          </div>
+                      <p className="time ms-1 mt-2 ">
+                        {dayjs(c.createdAt).fromNow()}
+                      </p>
+                    </div>
+                  );
+                })
+              : null}
+          </Box>
         </DialogContent>
         <DialogActions sx={{ backgroundColor: "#0A1929" }}>
           <Button onClick={handleClose}>Cancel</Button>
@@ -118,3 +169,5 @@ export default function Comment({ post, currentUser, user }) {
     </div>
   );
 }
+
+export default React.memo(Comments);

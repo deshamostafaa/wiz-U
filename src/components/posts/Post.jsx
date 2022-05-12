@@ -9,7 +9,7 @@ import "./post.scss";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { axiosInstance } from "../../config";
-import Comment from "../comment/Comment";
+import Comments from "../comment/Comments";
 
 const Post = ({ post, currentUser }) => {
   const [user, setUser] = useState({});
@@ -50,7 +50,7 @@ const Post = ({ post, currentUser }) => {
         return like;
       }
     }
-    return false;
+    return 'No Likes';
   }
 
 
@@ -103,7 +103,7 @@ const Post = ({ post, currentUser }) => {
               <p className="ms-4 mb-1 love">{likes() || ""}</p>
             </div>
             <div className="col">
-              <Comment post={ post } currentUser={currentUser} user={user} />
+              <Comments post={ post } currentUser={currentUser} user={user} />
             </div>
           </div>
           <div className="position-fixed menu">
@@ -117,4 +117,4 @@ const Post = ({ post, currentUser }) => {
   );
 };
 
-export default Post;
+export default React.memo(Post);
