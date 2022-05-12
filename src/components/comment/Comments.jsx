@@ -136,7 +136,7 @@ function Comments({ post, currentUser, user }) {
             </Button>
           </Box>
           <hr />
-          <Box component="div">
+        
             {comments?.length !== 0
               ? comments?.map((c) => {
                   return (
@@ -160,7 +160,7 @@ function Comments({ post, currentUser, user }) {
                   );
                 })
               : null}
-          </Box>
+         
         </DialogContent>
         <DialogActions sx={{ backgroundColor: "#0A1929" }}>
           <Button onClick={handleClose}>Cancel</Button>
