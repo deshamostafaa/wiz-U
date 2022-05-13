@@ -32,9 +32,9 @@ body::-webkit-scrollbar-thumb {
 
 body {
   min-height: 100vh;
-  background: #0B0C27;
+  background: #121212;
 }
 
 body * {
-  color: white !important;
+  color: #fff !important;
 }

@@ -13,6 +13,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { Tooltip } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
 
+
 function AddPost({ currentUser }) {
   const [post, setPost] = useState({
     desc: "",
@@ -49,14 +50,11 @@ function AddPost({ currentUser }) {
       <Tooltip title="Create Post" placement="top" TransitionComponent={Zoom}>
         <Button
           sx={{
-            width: "60px",
-            height: "60px",
             position: "fixed",
-            bottom: "80px",
-            right: "80px",
-            borderRadius: "50%",
+            top: "20px",
+            right: "50%",
+            zIndex: 100,
           }}
-          variant="outlined"
           onClick={handleClickOpen}
         >
           <AddIcon />
@@ -70,9 +68,7 @@ function AddPost({ currentUser }) {
         <DialogTitle sx={{ backgroundColor: "#0A1929" }}>
           Create Post
         </DialogTitle>
-        <DialogContent
-          sx={{ height: "300px", backgroundColor: "#0A1929" }}
-        >
+        <DialogContent sx={{ height: "300px", backgroundColor: "#0A1929" }}>
           <Box
             component="form"
             noValidate

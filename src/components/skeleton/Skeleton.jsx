@@ -1,22 +1,25 @@
 import * as React from "react";
 import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export function SkeletonPost() {
   return (
     <>
       <Box
         sx={{
-          width: "660px",
-          height: "185px",
+          width: "773px",
+          height: "210px",
           position: "relative",
-          border: "1px solid #212121",
+          border: "1px solid #404040",
           borderRadius: "5px",
-          marginLeft: "110px",
+          marginLeft: "120px",
+          backgroundColor: "grey.900",
+          marginBottom: "1.5rem",
         }}
       >
         <Skeleton
-          sx={{ marginLeft: "15px" }}
+          sx={{ margin: " 15px 0 0 15px" }}
           variant="text"
           width={200}
           height={40}
@@ -47,17 +50,18 @@ export function SkeletonPost() {
       </Box>
       <Box
         sx={{
-          width: "660px",
-          height: "185px",
+          width: "773px",
+          height: "210px",
           position: "relative",
-          border: "1px solid #212121",
+          border: "1px solid #404040",
           borderRadius: "5px",
-          margin: "30px 0",
-          marginLeft: "110px",
+          marginLeft: "120px",
+          backgroundColor: "grey.900",
+          marginBottom: "1.5rem",
         }}
       >
         <Skeleton
-          sx={{ marginLeft: "15px" }}
+          sx={{ margin: " 15px 0 0 15px" }}
           variant="text"
           width={200}
           height={40}
@@ -88,16 +92,18 @@ export function SkeletonPost() {
       </Box>
       <Box
         sx={{
-          width: "660px",
-          height: "185px",
+          width: "773px",
+          height: "210px",
           position: "relative",
-          border: "1px solid #212121",
+          border: "1px solid #404040",
           borderRadius: "5px",
-          marginLeft: "110px",
+          marginLeft: "120px",
+          backgroundColor: "grey.900",
+          marginBottom: "1.5rem",
         }}
       >
         <Skeleton
-          sx={{ marginLeft: "15px" }}
+          sx={{ margin: " 15px 0 0 15px" }}
           variant="text"
           width={200}
           height={40}
@@ -130,65 +136,6 @@ export function SkeletonPost() {
   );
 }
 
-export function SkeletonUser() {
-  return (
-    <Box
-      spacing={1}
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Skeleton variant="circular" width={190} height={190} />
-      <Box sx={{ alignSelf: "start", marginLeft: "3rem" }}>
-        <Skeleton
-          variant="text"
-          sx={{ marginTop: "30px" }}
-          width={280}
-          height={50}
-        />
-        <Skeleton
-          variant="text"
-          sx={{ marginTop: "-5px" }}
-          width={200}
-          height={30}
-        />
-        <Skeleton
-          variant="text"
-          sx={{ marginTop: "15px" }}
-          width={200}
-          height={30}
-        />
-        <Skeleton
-          variant="text"
-          sx={{ marginTop: "15px" }}
-          width={200}
-          height={30}
-        />
-        <Skeleton
-          variant="text"
-          sx={{ marginTop: "15px" }}
-          width={200}
-          height={50}
-        />
-        <Skeleton
-          variant="text"
-          sx={{ marginTop: "15px" }}
-          width={250}
-          height={30}
-        />
-        <Skeleton
-          variant="text"
-          sx={{ marginTop: "15px" }}
-          width={100}
-          height={30}
-        />
-      </Box>
-    </Box>
-  );
-}
 export function SkeletonFriend() {
   return (
     <>
@@ -199,15 +146,18 @@ export function SkeletonFriend() {
           flexDirection: "row",
           justifyContent: "start",
           alignItems: "center",
-          margin: "10px 0 0px 20px",
+          margin: "30px 0 0px 30px",
         }}
       >
-        <Skeleton variant="circular" width={70} height={70} />
+        <Skeleton variant="circular" width={60} height={60} />
         <Skeleton
           variant="text"
-          sx={{ marginLeft: "10px" }}
-          width={180}
-          height={35}
+          sx={{
+            marginLeft: "10px",
+            backgroundColor: "grey.900",
+          }}
+          width={190}
+          height={40}
         />
       </Box>
       <Box
@@ -217,15 +167,18 @@ export function SkeletonFriend() {
           flexDirection: "row",
           justifyContent: "start",
           alignItems: "center",
-          margin: "10px 0 0px 20px",
+          margin: "30px 0 0px 30px",
         }}
       >
-        <Skeleton variant="circular" width={70} height={70} />
+        <Skeleton variant="circular" width={60} height={60} />
         <Skeleton
           variant="text"
-          sx={{ marginLeft: "10px" }}
-          width={180}
-          height={35}
+          sx={{
+            marginLeft: "10px",
+            backgroundColor: "grey.900",
+          }}
+          width={190}
+          height={40}
         />
       </Box>
       <Box
@@ -235,15 +188,60 @@ export function SkeletonFriend() {
           flexDirection: "row",
           justifyContent: "start",
           alignItems: "center",
-          margin: "10px 0 0px 20px",
+          margin: "30px 0 0px 30px",
         }}
       >
-        <Skeleton variant="circular" width={70} height={70} />
+        <Skeleton variant="circular" width={60} height={60} />
         <Skeleton
           variant="text"
-          sx={{ marginLeft: "10px" }}
-          width={180}
-          height={35}
+          sx={{
+            marginLeft: "10px",
+            backgroundColor: "grey.900",
+          }}
+          width={190}
+          height={40}
+        />
+      </Box>
+      <Box
+        spacing={1}
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "start",
+          alignItems: "center",
+          margin: "30px 0 0px 30px",
+        }}
+      >
+        <Skeleton variant="circular" width={60} height={60} />
+        <Skeleton
+          variant="text"
+          sx={{
+            marginLeft: "10px",
+            backgroundColor: "grey.900",
+          }}
+          width={190}
+          height={40}
+        />
+      </Box>
+      <Box
+        spacing={1}
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "start",
+          alignItems: "center",
+          margin: "30px 0 0px 30px",
+        }}
+      >
+        <Skeleton variant="circular" width={60} height={60} />
+        <Skeleton
+          variant="text"
+          sx={{
+            marginLeft: "10px",
+            backgroundColor: "grey.900",
+          }}
+          width={190}
+          height={40}
         />
       </Box>
     </>

@@ -1,9 +1,9 @@
 .sidebar {
-  border-right: 3px solid #252753;
-  height: calc(100vh - 69px);
-  background-color: #191a35 !important;
+  // border-right: 3px solid #252753;
+  height: 100vh;
+    background: #181818 !important;
   position: fixed;
-  margin-top: 69px;
+  // margin-top: 69px;
   transition: .5s;
   z-index: 100;
   .top {
@@ -45,7 +45,7 @@
         cursor: pointer;
 
         &:hover {
-          background-color: #252753;
+          background-color: #404040;
         }
 
         .icon {

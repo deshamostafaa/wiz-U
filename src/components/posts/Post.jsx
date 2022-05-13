@@ -59,7 +59,7 @@ const Post = ({ post, currentUser }) => {
     <>
       <div
         className="row post"
-        data-aos="flip-left"
+        data-aos="zoom-in-up"
         data-aos-easing="ease-out-cubic"
         data-aos-duration="1500"
       >
@@ -87,7 +87,9 @@ const Post = ({ post, currentUser }) => {
             <h5>{user.name + " " + user.surname}</h5>
           </Link>
           <p className="time">{dayjs(post.createdAt).fromNow()}</p>
-          <p className="ps-2 mt-2 mb-4 lead" style={{width: "90%"}}>{post.desc}</p>
+          <p className="ps-2 mt-2 mb-4 lead" style={{ width: "90%" }}>
+            {post.desc}
+          </p>
           <div className="row w-50 d-flex">
             <div
               onClick={likeHandler}
@@ -102,7 +104,7 @@ const Post = ({ post, currentUser }) => {
               <p className="ms-4 mb-1 love">{likes() || ""}</p>
             </div>
             <div className="col">
-              <Comments post={ post } currentUser={currentUser} user={user} />
+              <Comments post={post} currentUser={currentUser} user={user} />
             </div>
           </div>
           <div className="position-fixed menu">

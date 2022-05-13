@@ -40,10 +40,11 @@ const Home = ({ currentUser, logOut }) => {
         exit={{ scale: 0 }}
         transition={{ duration: 0 }}
       >
-       
         <div className="home">
           <Sidebar logOut={logOut} />
           <main className="homeContainer d-flex justify-content-end">
+            <AddPost currentUser={currentUser} />
+
             <div className="row mt-5 w ">
               <div className="post-container">
                 <Feed />
@@ -75,7 +76,6 @@ const Home = ({ currentUser, logOut }) => {
             </div>
           </main>
         </div>
-        <AddPost currentUser={currentUser} />
       </motion.div>
     </>
   );

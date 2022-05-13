@@ -80,7 +80,7 @@ function Comments({ post, currentUser, user }) {
         <DialogTitle sx={{ backgroundColor: "#0A1929", color: "#eee" }}>
           Add Comment
         </DialogTitle>
-        <DialogContent sx={{ backgroundColor: "#0A1929" }}>
+        <DialogContent className="dio" sx={{ backgroundColor: "#0A1929" }}>
           <DialogContentText component="div">
             <div className=" p-2 content-comment position-relative">
               <div className=" w-100 d-flex  ">

@@ -9,7 +9,6 @@ import Avatar from "@mui/material/Avatar";
 import { deepOrange } from "@mui/material/colors";
 import PeopleIcon from "@mui/icons-material/People";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import CheckIcon from "@mui/icons-material/Check";
 import EditProfile from './../EditProfile/EditProfile';
 import { axiosInstance } from "../../config";
 
@@ -50,7 +49,7 @@ const UserDetails = ({ user, currentUser }) => {
 
   return (
     <>
-      <div className="w-100 d-flex  justify-content-center align-items-center flex-column">
+      <div className="d-flex  justify-content-center align-items-center flex-column">
         <div className="w-100 d-flex  justify-content-center align-items-center">
           <Avatar
             sx={{
@@ -64,14 +63,14 @@ const UserDetails = ({ user, currentUser }) => {
             {user.name?.slice(0, 1) + user.surname?.slice(0, 1)}
           </Avatar>
         </div>
-        <div className="w text-start mt-4 ms-5">
+        <div className="w text-start mt-4 ms-4">
           <span className="d-block name">{user.name + " " + (user.surname ? user.surname?.slice(0,1) + "." : '')}</span>
           <p className="since">
             Member Since {dayjs(user.createdAt).fromNow()} &#128156;
           </p>
           <p className="bio">{user.bio}</p>
         </div>
-        <div className="w text-start ms-5">
+        <div className="w text-start ms-4">
           <span className="d-block job">{user.job}</span>
 
           {user.username === currentUser.username ? (
@@ -82,15 +81,11 @@ const UserDetails = ({ user, currentUser }) => {
               onClick={handleFollow}
               className={
                 followed
-                  ? "btn w-100 fs-5 follow  btn-isfollow mt-4"
-                  : "btn w-100 follow  follow-button fs-5 mt-4"
+                  ? "btn fs-5 follow  btn-isfollow mt-4"
+                  : "btn follow  follow-button fs-5 mt-4"
               }
             >
-              {followed ? (
-                <CheckIcon sx={{ fontSize: 30, color: "green" }} />
-              ) : (
-                ""
-              )}
+              
               {followed ? "  Following" : "+ Follow"}
             </span>
           )}
@@ -106,7 +101,7 @@ const UserDetails = ({ user, currentUser }) => {
             </span>
           </div>
         </div>
-        <div className="w text-start mt-4 ms-5">
+        <div className="w text-start mt-4 ms-4">
           <span className="d-block ">
             <LocationOnIcon className="text-secondary fs-2 me-1 mb-2" />
             <span className="text-secondary fs-4 ">{user.address}</span>

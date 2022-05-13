@@ -49,7 +49,8 @@ export default function EditProfile({ currentUser }) {
           sx={{
             width: "90%",
             margin: "20px 0",
-            backgroundColor: "#191A35",
+            backgroundColor: "#1A8CD8",
+            fontSize: '16px'
           }}
           variant="outlined"
           onClick={handleClickOpen}
@@ -138,9 +139,7 @@ export default function EditProfile({ currentUser }) {
                 marginTop: "15px",
               }}
             >
-              
-                <Button onClick={handleClose}>Continue</Button>
-             
+              <Button onClick={handleClose}>Continue</Button>
             </DialogActions>
           </Box>
         </DialogContent>
