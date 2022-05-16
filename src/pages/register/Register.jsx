@@ -70,7 +70,7 @@ const Register = () => {
           <div className="bottom mt-5">
             <div className="left-r">
               <h1>Sign Up</h1>
-              <img src="./assets/sign.png" alt="" />
+              <img src="./assets/sign.png" alt="sign" />
             </div>
             <div className="right-register">
               <form onSubmit={formik.handleSubmit}>

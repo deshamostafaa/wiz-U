@@ -16,8 +16,14 @@ import { Link } from "react-router-dom";
 import "./comment.scss";
 import { axiosInstance } from "../../config";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Slide from "@mui/material/Slide";
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 function Comments({ post, currentUser, user }) {
+  const [loading, setLoading] = useState(true);
   const [open, setOpen] = React.useState(false);
   const [createCom, setCreateCom] = useState({
     userId: "",
@@ -29,6 +35,7 @@ function Comments({ post, currentUser, user }) {
   const fetchComment = useCallback(async () => {
     const { data } = await axiosInstance.get(`/comment/${post._id}`);
     setComments(data);
+    setLoading(false);
   }, [comments]);
 
   useEffect(() => {
@@ -44,6 +51,7 @@ function Comments({ post, currentUser, user }) {
     };
     try {
       await axiosInstance.post("/comment", newComment);
+      setCreateCom({ comment: "" });
     } catch (error) {
       console.log(error);
     }
@@ -63,6 +71,17 @@ function Comments({ post, currentUser, user }) {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  // Open Dialog For Delete 
+  const [openDel, setOpenDel] = useState(false);
+
+  const handleClickOpenDel = () => {
+    setOpenDel(true);
+  };
+
+  const handleCloseDle = () => {
+    setOpenDel(false);
   };
 
   dayjs.extend(relativeTime);
@@ -145,40 +164,69 @@ function Comments({ post, currentUser, user }) {
           <hr />
           <p className="fs-5">{comments?.length} Comments </p>
           <Box component="div">
-            {comments?.length !== 0
-              ? comments?.map((c) => {
-                  return (
-                    <div
-                      key={c._id}
-                      className=" p-2 mb-3 content-comment position-relative bg-transparent"
-                    >
-                      <div className=" w-100 d-flex align-items-center justify-content-between">
-                        <Link style={{ textDecoration: "none" }} to={`/`}>
-                          <h5 className="m-2">
-                            {c.userId.name + " " + c.userId.surname}
-                          </h5>
-                        </Link>
-                        {post.userId === currentUser._id ||
-                        currentUser._id === c.userId._id ? (
+            {loading ? (
+              <p className="loading fa fa-spinner fa-spin"></p>
+            ) : (
+              comments?.map((c) => {
+                return (
+                  <div
+                    key={c._id}
+                    className=" p-2 mb-3 content-comment position-relative bg-transparent"
+                  >
+                    <div className=" w-100 d-flex align-items-center justify-content-between">
+                      <Link style={{ textDecoration: "none" }} to={`/`}>
+                        <h5 className="m-2">
+                          {c.userId.name + " " + c.userId.surname}
+                        </h5>
+                      </Link>
+                      {post.userId === currentUser._id ||
+                      currentUser._id === c.userId._id ? (
+                        <>
                           <Button
-                            onClick={() => handleDelete(c._id)}
+                            onClick={handleClickOpenDel}
                             variant="outlined"
                           >
                             <DeleteIcon />
                           </Button>
-                        ) : (
-                          ""
-                        )}
-                      </div>
-                      <p className="ps-2 mt-1 mb-2 fs-6 lead">{c.comment}</p>
 
-                      <p className="time ms-1 mt-2 ">
-                        {dayjs(c.createdAt).fromNow()}
-                      </p>
+                          <Dialog
+                            sx={{ backgroundColor: "#0A1929" }}
+                            open={openDel}
+                            TransitionComponent={Transition}
+                            keepMounted
+                            onClose={handleClose}
+                            aria-describedby="alert-dialog-slide-description"
+                          >
+                            <DialogTitle sx={{ backgroundColor: "#0A1929" }}>
+                              Info Message
+                            </DialogTitle>
+                            <DialogContent sx={{ backgroundColor: "#0A1929" }}>
+                              <DialogContentText id="alert-dialog-slide-description">
+                                Are You Sure To Delete This Comment
+                              </DialogContentText>
+                            </DialogContent>
+                            <DialogActions
+                              onClick={() => handleDelete(c._id)}
+                              sx={{ backgroundColor: "#0A1929" }}
+                            >
+                              <Button onClick={handleCloseDle}>Disagree</Button>
+                              <Button onClick={handleCloseDle}>Agree</Button>
+                            </DialogActions>
+                          </Dialog>
+                        </>
+                      ) : (
+                        ""
+                      )}
                     </div>
-                  );
-                })
-              : null}
+                    <p className="ps-2 mt-1 mb-2 fs-6 lead">{c.comment}</p>
+
+                    <p className="time ms-1 mt-2 ">
+                      {dayjs(c.createdAt).fromNow()}
+                    </p>
+                  </div>
+                );
+              })
+            )}
           </Box>
         </DialogContent>
         <DialogActions sx={{ backgroundColor: "#0A1929" }}>

@@ -66,18 +66,16 @@ const Post = ({ post, currentUser }) => {
         <div className="col-lg-8 col-md-12 col-sm-12 p-3 content position-relative">
           <div className=" w-100 position-relative ">
             <Link to={`/profile/${user.username}`}>
-              <Avatar
+              <img
                 className="img-pro"
-                sx={{
+                style={{
                   width: "60px",
                   height: "60px",
-                  fontSize: "26px",
-                  bgcolor: deepOrange[500],
+                  // fontSize: "26px",
                 }}
                 src={user.profilePicture}
-              >
-                {user.name?.slice(0, 1) + user.surname?.slice(0, 1)}
-              </Avatar>
+              />
+              
             </Link>
           </div>
           <Link
@@ -93,7 +91,7 @@ const Post = ({ post, currentUser }) => {
           <div className="row w-50 d-flex">
             <div
               onClick={likeHandler}
-              className="col-8"
+              className="col"
               style={{ cursor: "pointer" }}
             >
               <i

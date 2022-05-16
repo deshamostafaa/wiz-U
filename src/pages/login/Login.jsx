@@ -57,7 +57,7 @@ const Login = ({getUserData}) => {
     >
       <div className="login">
         <div>
-          <img src="./assets/login.png" alt="" />
+          <img src="./assets/login.png" alt="login" />
         </div>
         <form onSubmit={formik.handleSubmit}>
           <h1>Sign In</h1>
