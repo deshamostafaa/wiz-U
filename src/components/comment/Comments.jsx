@@ -65,15 +65,7 @@ function Comments({ post, currentUser, user }) {
     setOpen(false);
   };
 
-  const handleDelete = async (id) => {
-    try {
-      await axiosInstance.delete(`comment/${id}`);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // Open Dialog For Delete 
+  // Open Dialog For Delete
   const [openDel, setOpenDel] = useState(false);
 
   const handleClickOpenDel = () => {
@@ -82,6 +74,14 @@ function Comments({ post, currentUser, user }) {
 
   const handleCloseDle = () => {
     setOpenDel(false);
+  };
+  const handleDelete = async (id) => {
+    try {
+      await axiosInstance.delete(`comment/${id}`);
+      handleCloseDle();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   dayjs.extend(relativeTime);
@@ -205,12 +205,11 @@ function Comments({ post, currentUser, user }) {
                                 Are You Sure To Delete This Comment
                               </DialogContentText>
                             </DialogContent>
-                            <DialogActions
-                              onClick={() => handleDelete(c._id)}
-                              sx={{ backgroundColor: "#0A1929" }}
-                            >
+                            <DialogActions sx={{ backgroundColor: "#0A1929" }}>
                               <Button onClick={handleCloseDle}>Disagree</Button>
-                              <Button onClick={handleCloseDle}>Agree</Button>
+                              <Button onClick={() => handleDelete(c._id)}>
+                                Agree
+                              </Button>
                             </DialogActions>
                           </Dialog>
                         </>
